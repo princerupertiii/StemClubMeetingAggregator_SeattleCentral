@@ -125,16 +125,20 @@ function dayClicked(element){
 			form.attr( "enctype", "application/x-www-form-urlencoded");
 			form.attr( "autocomplete", "off"); 	
 			
+                $clubname = $meetingroom = $date = $time = $frequency = "";
 			var fields = $("<fieldset></fieldset>");
 			fields.append( $("<legend>Club Event Info:</legend>") );
-			fields.append("First name:", $("<br>") ); 
-			fields.append( $('<input type="text" name="firstname">') ); 
-			fields.append( $("<br>"), "Last name:", $("<br>") );
-			fields.append( $('<input type="text" name="lastname">'), $("<hr>") );	
+			var table = $("<table></table>").addClass("formStyle") ;
+			table.append($('<tr><td>Club Name:</td><td><input type="text" name="clubname"></td></tr>'),
+			                $('<tr><td>Meeting Room:</td><td><input type="text" name="meetingroom"></td></tr>'),
+			                    $('<tr><td>Date:</td><td><input type="text" name="date"></td></tr>'),
+			                        $('<tr><td>Time:</td><td><input type="text" name="time"></td></tr>'),
+			                            $('<tr><td>Frequency:</td><td><input type="text" name="frequency"></td></tr>') );
+            fields.append(table);
+            fields.append( $("<hr>") ); 	
 			fields.append( $('<input type="submit" onclick="on_submit()" value="Submit">') );
 			
-			form.append(fields);
-			
+			form.append(fields);			
 			calendar.append(form);
 			
 			var label = $("<p></p>");
@@ -147,5 +151,5 @@ function dayClicked(element){
 }
 
 function on_submit(){
-	location.reload();
+	//location.reload();
 }

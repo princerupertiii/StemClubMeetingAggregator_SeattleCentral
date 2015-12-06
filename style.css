@@ -19,6 +19,11 @@
 	background-color:white;
 }
 
+.formStyle>td{
+    padding:  5px;
+    width: 200px;  
+}
+
 .selectorStyle {
 	margin:5px;
 	padding:5px;
