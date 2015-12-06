@@ -1,0 +1,75 @@
+.red {
+	margin-left:5px;
+	background-color:red;
+}
+.green {
+	margin-left:5px;
+	background-color:green;
+}
+.blue {
+	margin-left:5px;
+	background-color:blue;
+}
+.yellow {
+	margin-left:5px;
+	background-color:yellow;
+}
+.default {
+	margin:5px;
+	background-color:white;
+}
+
+.selectorStyle {
+	margin:5px;
+	padding:5px;
+	color: white;	
+	border-radius: 5px;
+	border: 2px ridge rgba(0, 255, 0, 0.5);
+	background-color: rgba(0, 0, 0, 0.5);
+}
+
+h1 {
+	color: white;
+	padding: 15px;
+	border-radius: 5px;
+	border: 2px ridge rgba(0, 255, 0, 0.5);
+	background-color: rgba(0, 0, 255, 0.3);
+}
+
+hr {
+	color: rgba(0, 0, 255, 0.5);
+	background-color: rgba(0, 0, 255, 0.5);
+	border-color: rgb(0, 255, 0);
+}
+
+body {
+	background-size:cover;
+	background-repeat:no-repeat;
+	background-image: url("binary.jpg");
+	background-color: black;
+}
+
+#main{
+	display:flex;
+	margin:5px;
+	padding:5px;
+}
+
+#content{
+	width:30%;
+	padding:5px;
+	color: white;	
+	border-radius: 5px;
+	border: 2px ridge rgba(0, 0, 255, 0.5);
+	background-color: rgba(0, 80, 80, 0.5);
+	min-width:150px;
+}
+
+#title {
+	margin:5px;
+	padding:5px;
+	color: white;	
+	border-radius: 5px;
+	border: 2px ridge rgba(0, 0, 255, 0.5);
+	background-color: rgba(0, 80, 80, 0.5);
+}	
