@@ -137,7 +137,6 @@ function dayClicked(element){
 			
 			calendar.append(form);
 			
-			
 			var label = $("<p></p>");
 			label.text(title);
 			label.addClass("event");
