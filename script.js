@@ -6,9 +6,13 @@ CSClubMeetingAggregator.club = function(str){
 	alert("you called " + str + " function");
 	
 }
+CSClubMeetingAggregator.tempClub_01 = CSClubMeetingAggregator.club("Club 01");
+CSClubMeetingAggregator.tempClub_02 = CSClubMeetingAggregator.club("Club 02");
+
 
 function newList(){
-
+    CSClubMeetingAggregator.tempClub_01();
+    CSClubMeetingAggregator.tempClub_02();
 	var clubCount = ++CSClubMeetingAggregator.clubCount;	
 	var divider =  $("<div></div>").addClass("selectorStyle");
 	//Add Code to retrieve DataBase 
