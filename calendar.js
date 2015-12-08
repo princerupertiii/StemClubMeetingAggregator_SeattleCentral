@@ -117,7 +117,7 @@ function dayClicked(element){
 		if(title != null){
 			var calendar = $("#calendar-container");
 			
-			var form = $('<form id="eventForm"></form>');
+			var form = $('<form validate></form>');
 			form.attr( "action", "action_page.php");
 			form.attr( "method", "POST");
 			form.attr( "target", "_blank"); 
@@ -135,22 +135,16 @@ function dayClicked(element){
 			                            $('<tr><td>Frequency:</td><td><input type="text" name="frequency"></td></tr>') );
             fields.append(table);
             fields.append( $("<hr>") ); 	
-			fields.append( $('<input type="submit" onclick="on_submit()" value="Submit">') );
+			fields.append( $('<input type="submit" onclick="submit()" value="Submit">') );
 			
 			form.append(fields);			
-			calendar.append(form);
-			
-			var label = $("<p></p>");
-			label.text(title);
-			label.addClass("event");
-			$(element).append(label); 	
+			calendar.append(form); 	
 		}
 		
 	};
 }
 
-function on_submit(){
+function submit(){
 
-	//location.reload();
-
+	location.reload();
 }
