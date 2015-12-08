@@ -37,7 +37,6 @@
         } else {
             $frequency = test_input($_POST["frequency"]);
         }
-
     }
 
     function test_input($data) {
@@ -45,7 +44,18 @@
       $data = stripslashes($data);
       $data = htmlspecialchars($data);
       return $data;
-     }
+    }
+
+    if ($_SERVER["REQUEST_METHOD"] == "GET") {
+
+        echo "clubname \nData: ";
+        echo "meetingroom \nData: ";
+        echo "date \nData: ";
+        echo "time \nData: ";
+        echo "frequency";
+
+        return;
+    }
 
 ?>
 

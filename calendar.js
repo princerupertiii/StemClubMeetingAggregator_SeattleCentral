@@ -117,19 +117,18 @@ function dayClicked(element){
 		if(title != null){
 			var calendar = $("#calendar-container");
 			
-			var form = $("<form validate></form>");
+			var form = $('<form id="eventForm"></form>');
 			form.attr( "action", "action_page.php");
 			form.attr( "method", "POST");
 			form.attr( "target", "_blank"); 
 			form.attr( "accept-charset", "UTF-8");
 			form.attr( "enctype", "application/x-www-form-urlencoded");
-			form.attr( "autocomplete", "off"); 	
-			
-                $clubname = $meetingroom = $date = $time = $frequency = "";
+			form.attr( "autocomplete", "off");
+
 			var fields = $("<fieldset></fieldset>");
 			fields.append( $("<legend>Club Event Info:</legend>") );
 			var table = $("<table></table>").addClass("formStyle") ;
-			table.append($('<tr><td>Club Name:</td><td><input type="text" name="clubname"></td></tr>'),
+			table.append($('<tr><td>Club Name:</td> <td><input type="text" name="clubname"></td></tr>'),
 			                $('<tr><td>Meeting Room:</td><td><input type="text" name="meetingroom"></td></tr>'),
 			                    $('<tr><td>Date:</td><td><input type="text" name="date"></td></tr>'),
 			                        $('<tr><td>Time:</td><td><input type="text" name="time"></td></tr>'),
@@ -151,5 +150,7 @@ function dayClicked(element){
 }
 
 function on_submit(){
+
 	//location.reload();
+
 }

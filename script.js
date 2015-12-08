@@ -34,17 +34,11 @@ function newOption(name, style){
 
 function doSomething(sender){
 	// Add functionality to club selector...
-	//alert("You selected: " + sender.value);
-	$.ajax(
-		{
-			url:'myAjax.php',
-			complete: function (response) {
-				alert(response.responseText);
-			},
-			error: function () {
-				alert('Error in call to PHP!');
-			}
-	  	}
-	);
+
+    $.get("action_page.php", 
+        function(data, status){
+            alert("Data: " + data + "\nStatus: " + status);
+        }
+     );
 }
 //////////////////////////////////////////////////////////////////
