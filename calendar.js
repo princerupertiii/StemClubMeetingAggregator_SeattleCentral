@@ -119,11 +119,7 @@ function dayClicked(element){
 			
 			var form = $('<form id="clubForm"></form>');
 			form.attr( "action", "/");
-			//form.attr( "method", "POST");
-			//form.attr( "target", "_blank"); 
-			//form.attr( "accept-charset", "UTF-8");
-			//form.attr( "enctype", "application/x-www-form-urlencoded");
-			//form.attr( "autocomplete", "off");
+
 			form.submit(
                 function(event){
                    submitForm(event); 
