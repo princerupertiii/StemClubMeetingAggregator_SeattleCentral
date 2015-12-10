@@ -117,13 +117,18 @@ function dayClicked(element){
 		if(title != null){
 			var calendar = $("#calendar-container");
 			
-			var form = $('<form validate></form>');
-			form.attr( "action", "action_page.php");
-			form.attr( "method", "POST");
-			form.attr( "target", "_blank"); 
-			form.attr( "accept-charset", "UTF-8");
-			form.attr( "enctype", "application/x-www-form-urlencoded");
-			form.attr( "autocomplete", "off");
+			var form = $('<form id="clubForm"></form>');
+			form.attr( "action", "/");
+			//form.attr( "method", "POST");
+			//form.attr( "target", "_blank"); 
+			//form.attr( "accept-charset", "UTF-8");
+			//form.attr( "enctype", "application/x-www-form-urlencoded");
+			//form.attr( "autocomplete", "off");
+			form.submit(
+                function(event){
+                   submitForm(event); 
+                }
+            );
 
 			var fields = $("<fieldset></fieldset>");
 			fields.append( $("<legend>Club Event Info:</legend>") );
@@ -135,7 +140,7 @@ function dayClicked(element){
 			                            $('<tr><td>Frequency:</td><td><input type="text" name="frequency"></td></tr>') );
             fields.append(table);
             fields.append( $("<hr>") ); 	
-			fields.append( $('<input type="submit" onclick="submit()" value="Submit">') );
+			fields.append( $('<input type="submit" value="Submit">') );
 			
 			form.append(fields);			
 			calendar.append(form); 	
@@ -144,7 +149,27 @@ function dayClicked(element){
 	};
 }
 
-function submit(){
+function submitForm(event){
+    // Stop form from submitting normally
+    event.preventDefault();
 
-	location.reload();
+    // TODO: Validate Form....
+
+
+    // Submit Form Data
+    $.post( "action_page.php", $("#clubForm").serialize()
+        ).done(           
+            function() {
+                alert( "second success" );
+            }
+        ).fail(
+            function() {
+                alert( "error" );
+            }
+        ).always(              
+            function() {
+                alert( "finished" );
+                location.reload();
+            }
+        );
 }
