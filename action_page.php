@@ -11,7 +11,6 @@
 
         if ( empty($_POST["clubname"]) ) {
             $clubnameErr = "Club Name is required";
-            fwrite($myfile, "Club Name: " . $clubnameErr);
         } else {
             $clubname = test_input($_POST["clubname"]);
             fwrite($myfile, "Club Name: " . $clubname);
@@ -19,7 +18,6 @@
 
         if ( empty($_POST["meetingroom"]) ) {
             $meetingroomErr = "Meeting Room is required";
-            fwrite($myfile, "\nMeeting Room: " . $meetingroomErr);
         } else {
             $meetingroom = test_input($_POST["meetingroom"]);
             fwrite($myfile, "\nMeeting Room: " . $meetingroom);
@@ -27,7 +25,6 @@
 
         if ( empty($_POST["date"]) ) {
             $dateErr = "Date is required";
-            fwrite($myfile, "\nDate: " . $dateErr);
         } else {
             $date = test_input($_POST["date"]);
             fwrite($myfile, "\nDate: " . $date);
@@ -35,7 +32,6 @@
 
         if ( empty($_POST["time"]) ) {
             $timeErr = "Time is required";
-            fwrite($myfile, "\nTime: " . $timeErr);
         } else {
             $time = test_input($_POST["time"]);
             fwrite($myfile, "\nTime: " . $time);
@@ -43,7 +39,6 @@
 
         if ( empty($_POST["frequency"]) ) {
             $frequencyErr = "Frequency is required";
-            fwrite($myfile, "\nFrequency: " . $frequencyEr);
         } else {
             $frequency = test_input($_POST["frequency"]);
             fwrite($myfile, "\nFrequency: " . $frequency);
@@ -51,6 +46,7 @@
 
         // Close File With Saved Data
         fclose($myfile);
+        return;
     }
 
     function test_input($data) {

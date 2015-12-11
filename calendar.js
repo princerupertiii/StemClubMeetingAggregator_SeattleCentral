@@ -129,11 +129,11 @@ function dayClicked(element){
 			var fields = $("<fieldset></fieldset>");
 			fields.append( $("<legend>Club Event Info:</legend>") );
 			var table = $("<table></table>").addClass("formStyle") ;
-			table.append($('<tr><td>Club Name:</td> <td><input type="text" name="clubname"></td></tr>'),
-			                $('<tr><td>Meeting Room:</td><td><input type="text" name="meetingroom"></td></tr>'),
-			                    $('<tr><td>Date:</td><td><input type="text" name="date"></td></tr>'),
-			                        $('<tr><td>Time:</td><td><input type="text" name="time"></td></tr>'),
-			                            $('<tr><td>Frequency:</td><td><input type="text" name="frequency"></td></tr>') );
+			table.append($('<tr><td>Club Name:</td> <td><input type="text" name="clubname"></td><td><span></span></td></tr>'),
+			                $('<tr><td>Meeting Room:</td><td><input type="text" name="meetingroom"></td><td><span></span></td></tr>'),
+			                    $('<tr><td>Date:</td><td><input type="text" name="date"></td><td><span></span></td></tr>'),
+			                        $('<tr><td>Time:</td><td><input type="text" name="time"></td><td><span></span></td></tr>'),
+			                            $('<tr><td>Frequency:</td><td><input type="text" name="frequency"></td><td><span></span></td></tr>') );
             fields.append(table);
             fields.append( $("<hr>") ); 	
 			fields.append( $('<input type="submit" value="Submit">') );
@@ -150,22 +150,48 @@ function submitForm(event){
     event.preventDefault();
 
     // TODO: Validate Form....
+    var ready = validateForm();
 
-
-    // Submit Form Data
-    $.post( "action_page.php", $("#clubForm").serialize()
-        ).done(           
-            function() {
-                alert( "second success" );
-            }
-        ).fail(
-            function() {
-                alert( "error" );
-            }
-        ).always(              
-            function() {
-                alert( "finished" );
+    if (ready) {
+        // Submit Form Data
+        $.post("action_page.php", $("#clubForm").serialize()
+        ).done(
+            function () {
+                alert("Data Was Saved Successfully!");
                 location.reload();
             }
-        );
+        ).fail(
+            function () {
+                alert("Error Saving Event Data!");
+            }
+        ).always();
+    }
+}
+
+function validateForm(){
+    var ready = true;
+
+    var spanErr = [];
+    $('span').each(
+        function() {
+            spanErr.push($(this));
+        }
+    );
+
+    $('input:text').each(
+        function (index) {
+            if ($( this ).val() === "") {
+                spanErr[index-1].text("*Please fill out all fields.");
+                spanErr[index-1].addClass("error");
+                ready = false;
+            }
+            else {
+                spanErr[index-1].text("");
+                spanErr[index-1].removeClass("error");
+            }
+        }
+    );
+    alert("Validated: " + ready);
+
+    return ready;
 }
