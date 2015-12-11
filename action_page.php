@@ -41,7 +41,7 @@
             $frequencyErr = "Frequency is required";
         } else {
             $frequency = test_input($_POST["frequency"]);
-            fwrite($myfile, "\nFrequency: " . $frequency);
+            fwrite($myfile, "\nFrequency: " . $frequency . "\n\n");
         }
 
         // Close File With Saved Data

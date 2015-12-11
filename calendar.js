@@ -181,17 +181,16 @@ function validateForm(){
     $('input:text').each(
         function (index) {
             if ($( this ).val() === "") {
-                spanErr[index-1].text("*Please fill out all fields.");
-                spanErr[index-1].addClass("error");
+                spanErr[index+1].text("*Please fill out all fields.");
+                spanErr[index+1].addClass("error");
                 ready = false;
             }
             else {
-                spanErr[index-1].text("");
-                spanErr[index-1].removeClass("error");
+                spanErr[index+1].text("");
+                spanErr[index+1].removeClass("error");
             }
         }
     );
-    alert("Validated: " + ready);
 
     return ready;
 }
