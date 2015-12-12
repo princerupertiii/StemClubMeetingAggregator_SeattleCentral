@@ -2,7 +2,8 @@
 <html lang="en-US">
 	<head>
 		<script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.1.min.js"></script>  
-		<script type="text/javascript" src="script.js"></script>
+		<script type="text/javascript" src="form.js"></script>		
+        <script type="text/javascript" src="script.js"></script>
 		<script type="text/javascript" src="calendar.js"></script>
 		
 		<link rel="stylesheet" type="text/css" href="style.css"></link>		
@@ -13,23 +14,37 @@
 		<div id="title">
 			<h1>CSClub Meeting Aggregator</h1>
 		</div>
-		
-		<div id="main">
-		
-			<div id="content">
-				<input type="button" onclick="newList()" value="Add STEM Club"></input>
-				<hr>
-			</div>
-			
-			<div id="calendar-container">		
-				<div id="calendar-header">
-					<span id="calendar-month-year"></span>	
-				</div>
-				<div id="calendar-days">
-				</div>
-			</div>
-			
-		</div>
+	
+		<table id="main">         
+            <tr>   				   
+                <td id="content">
+                    <input id="addClubButton" type="button" onclick="newList()" value="Add STEM Club"></input>
+			    </td>
+                <!-- Calendar To Show Event Info -->
+                <td id="calendar-container">	
+				    <div id="calendar-header">
+					    <span id="calendar-month-year"></span>	
+				    </div>
+				    <div id="calendar-days">
+				    </div>
+                    <!-- Hidden Form For Event Data Entry -->
+                    <form id="clubForm" action="/" class="formStyle" onsubmit="submitForm(event)">
+                	    <fieldset>
+                            <legend>Club Event Info:</legend>
+                        	    <table>
+                                    <tr><td>Club Name:</td> <td><input type="text" name="clubname"></td><td><span></span></td></tr>
+                                    <tr><td>Meeting Room:</td><td><input type="text" name="meetingroom"></td><td><span></span></td></tr>
+			                        <tr><td>Date:</td><td><input type="text" name="date"></td><td><span></span></td></tr>
+			                        <tr><td>Time:</td><td><input type="text" name="time"></td><td><span></span></td></tr>
+			                        <tr><td>Frequency:</td><td><input type="text" name="frequency"></td><td><span></span></td></tr>
+                                </table>
+                            <hr>
+			                <input type="submit" value="Submit">
+                        </fieldset>
+                    </form>
+                </td>
+            </tr>
+		</table>
 
 	</body>
 

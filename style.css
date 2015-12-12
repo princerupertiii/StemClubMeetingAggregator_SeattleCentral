@@ -19,9 +19,9 @@
 	background-color:white;
 }
 
-.formStyle>td{
+.formStyle {
+    display: none; 
     padding:  5px;
-    width: 200px;  
 }
 
 .selectorStyle {
@@ -48,6 +48,8 @@ hr {
 }
 
 body {
+    height: 1000px;
+    min-width: 1000px;
 	background-size:cover;
 	background-repeat:no-repeat;
 	background-image: url("binary.jpg");
@@ -55,9 +57,12 @@ body {
 }
 
 #main{
-	display:flex;
 	margin:5px;
 	padding:5px;
+}
+
+#addClubButton{
+    margin: 10px;
 }
 
 #content{

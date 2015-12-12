@@ -11,7 +11,8 @@ function newList(){
 
 	var clubCount = ++CSClubMeetingAggregator.clubCount;	
 	var divider =  $("<div></div>").addClass("selectorStyle");
-	//Add Code to retrieve DataBase 
+	
+    //Add Code to retrieve DataBase 
 	var clubList = $("<select></select>");	
 	clubList.attr("id", "clubList" + clubCount);
 	clubList.attr("onchange", "doSomething(this)");
@@ -39,6 +40,10 @@ function doSomething(sender){
         function(data, status){
             alert("Data: " + data + "\nStatus: " + status);
         }
+     ).fail(
+            function(data, status){
+                alert("Data Retrieval Failed!");
+            }
      );
 }
 //////////////////////////////////////////////////////////////////

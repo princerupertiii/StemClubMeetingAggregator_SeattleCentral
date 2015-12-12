@@ -1,39 +1,39 @@
 $(
-    function(){
+    function () {
 
-		var date = new Date(); // Current Date Object
-	
-		var month_name = ["January", "February", "March", 
-							"April", "May", "June", 
-							"July",	"August", "September",
+        var date = new Date(); // Current Date Object
+
+        var month_name = ["January", "February", "March",
+							"April", "May", "June",
+							"July", "August", "September",
 							"October", "November", "December"];
-							
-		var month = date.getMonth(); // returns 0-11	
-		
-		var year = date.getFullYear(); //2015
-		
-		var day_names = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-		
-		var tmp = new Date(month_name[month] + " " + 1 + ", " + year).toDateString();
 
-		var first_day = tmp.substring(0, 3); // Mon - Fri
-		
-		var day_num = day_names.indexOf(first_day); //First day of the month(Mon, Tue...etc.)	
-		
-		var days = new Date(year, month + 1, 0).getDate(); //30
-		
-		var today = date.getDate();	// Today's Date 3, 4, 5...30 etc.
-		
-	    //////////////////////////////////////////////////////////////////////////////////	
-		var table = $("<table></table>");
-		
-		add_daysOfWeek(day_names, table);
-		add_calendarDays(day_num, days, today, table);	
-	
-		$("#calendar-month-year").text(month_name[month] + " " + year);
-		$("#calendar-days").append(table);
-		
-	}
+        var month = date.getMonth(); // returns 0-11	
+
+        var year = date.getFullYear(); //2015
+
+        var day_names = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+        var tmp = new Date(month_name[month] + " " + 1 + ", " + year).toDateString();
+
+        var first_day = tmp.substring(0, 3); // Mon - Fri
+
+        var day_num = day_names.indexOf(first_day); //First day of the month(Mon, Tue...etc.)	
+
+        var days = new Date(year, month + 1, 0).getDate(); //30
+
+        var today = date.getDate(); // Today's Date 3, 4, 5...30 etc.
+
+        //////////////////////////////////////////////////////////////////////////////////	
+        var table = $("<table></table>");
+
+        add_daysOfWeek(day_names, table);
+        add_calendarDays(day_num, days, today, table);
+
+        $("#calendar-month-year").text(month_name[month] + " " + year);
+        $("#calendar-days").append(table);
+
+    }
 );
 
 function add_daysOfWeek(day_names, table){
@@ -105,92 +105,4 @@ function createCell(count, today){
 	td.attr("onclick", "dayClicked(this)");			
 	
 	return td;
-}
-
-function dayClicked(element){
-
-	var response = confirm("Would you like to create a new event?");
-	
-	if(response){
-		var title = prompt("Enter a title for the event.", "New Event");
-		
-		if(title != null){
-			var calendar = $("#calendar-container");
-			
-			var form = $('<form id="clubForm"></form>');
-			form.attr( "action", "/");
-
-			form.submit(
-                function(event){
-                   submitForm(event); 
-                }
-            );
-
-			var fields = $("<fieldset></fieldset>");
-			fields.append( $("<legend>Club Event Info:</legend>") );
-			var table = $("<table></table>").addClass("formStyle") ;
-			table.append($('<tr><td>Club Name:</td> <td><input type="text" name="clubname"></td><td><span></span></td></tr>'),
-			                $('<tr><td>Meeting Room:</td><td><input type="text" name="meetingroom"></td><td><span></span></td></tr>'),
-			                    $('<tr><td>Date:</td><td><input type="text" name="date"></td><td><span></span></td></tr>'),
-			                        $('<tr><td>Time:</td><td><input type="text" name="time"></td><td><span></span></td></tr>'),
-			                            $('<tr><td>Frequency:</td><td><input type="text" name="frequency"></td><td><span></span></td></tr>') );
-            fields.append(table);
-            fields.append( $("<hr>") ); 	
-			fields.append( $('<input type="submit" value="Submit">') );
-			
-			form.append(fields);			
-			calendar.append(form); 	
-		}
-		
-	};
-}
-
-function submitForm(event){
-    // Stop form from submitting normally
-    event.preventDefault();
-
-    // TODO: Validate Form....
-    var ready = validateForm();
-
-    if (ready) {
-        // Submit Form Data
-        $.post("action_page.php", $("#clubForm").serialize()
-        ).done(
-            function () {
-                alert("Data Was Saved Successfully!");
-                location.reload();
-            }
-        ).fail(
-            function () {
-                alert("Error Saving Event Data!");
-            }
-        ).always();
-    }
-}
-
-function validateForm(){
-    var ready = true;
-
-    var spanErr = [];
-    $('span').each(
-        function() {
-            spanErr.push($(this));
-        }
-    );
-
-    $('input:text').each(
-        function (index) {
-            if ($( this ).val() === "") {
-                spanErr[index+1].text("*Please fill out all fields.");
-                spanErr[index+1].addClass("error");
-                ready = false;
-            }
-            else {
-                spanErr[index+1].text("");
-                spanErr[index+1].removeClass("error");
-            }
-        }
-    );
-
-    return ready;
 }
