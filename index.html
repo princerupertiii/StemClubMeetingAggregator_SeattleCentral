@@ -23,7 +23,13 @@
                 <!-- Calendar To Show Event Info -->
                 <td id="calendar-container">	
 				    <div id="calendar-header">
-					    <span id="calendar-month-year"></span>	
+						<table>
+						<tr>
+							<td><input id="lastMonth" type="image" onclick="prevMonth_Click()"></td>
+							<td id="currentMonth"><span id="calendar-month-year"></span></td>	
+							<td><input id="nextMonth" type="image" onclick="nextMonth_Click()"></td>
+						</tr>
+						</table>
 				    </div>
 				    <div id="calendar-days">
 				    </div>

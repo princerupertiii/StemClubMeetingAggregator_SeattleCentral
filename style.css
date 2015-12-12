@@ -1,22 +1,22 @@
 .red {
 	margin-left:5px;
-	background-color:red;
+	background-color: rgba(255, 0, 0, 0.5);
 }
 .green {
 	margin-left:5px;
-	background-color:green;
+	background-color: rgba(0, 255, 0, 0.5);
 }
 .blue {
 	margin-left:5px;
-	background-color:blue;
+	background-color: rgba(0, 0, 255, 0.5);
 }
 .yellow {
 	margin-left:5px;
-	background-color:yellow;
+	background-color: rgba(150, 150, 0, 0.5);
 }
 .default {
 	margin:5px;
-	background-color:white;
+	background-color: rgba(255, 255, 255, 0.5);
 }
 
 .formStyle {

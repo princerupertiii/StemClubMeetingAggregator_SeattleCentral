@@ -21,7 +21,7 @@
 }
 
 #calendar-header{
-	height: 40px;
+	height: 65px;
 	text-align: center;
 	border-radius: 5px;
 	background-color: rgba(0, 0, 255, 0.5);
@@ -61,3 +61,29 @@
 	border: 2px ridge rgba(0, 255, 0, 0.5);
 }
 
+#currentMonth{
+	width:100%;
+}
+
+#lastMonth{
+	width: 60px;
+	height: 60px;
+	background: url("left.png");
+	background-size: 60px 60px;
+}
+#lastMonth:hover{
+	background: url("left_hover.png");
+	background-size: 60px 60px;
+}
+
+#nextMonth{
+	width: 60px;
+	height: 60px;
+	background: url("right.png");
+	background-size: 60px 60px;
+}
+
+#nextMonth:hover{
+	background: url("right_hover.png");
+	background-size: 60px 60px;
+}
