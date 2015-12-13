@@ -68,22 +68,22 @@
 #lastMonth{
 	width: 60px;
 	height: 60px;
-	background: url("left.png");
+	background: url("images/left.png");
 	background-size: 60px 60px;
 }
 #lastMonth:hover{
-	background: url("left_hover.png");
+	background: url("images/left_hover.png");
 	background-size: 60px 60px;
 }
 
 #nextMonth{
 	width: 60px;
 	height: 60px;
-	background: url("right.png");
+	background: url("images/right.png");
 	background-size: 60px 60px;
 }
 
 #nextMonth:hover{
-	background: url("right_hover.png");
+	background: url("images/right_hover.png");
 	background-size: 60px 60px;
 }
