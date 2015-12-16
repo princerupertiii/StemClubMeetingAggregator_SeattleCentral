@@ -1,6 +1,12 @@
 var Calendar = { };
-Calendar.month = null;
-Calendar.year = null;
+Calendar.date = new Date();
+Calendar.month = Calendar.date.getMonth(); // returns 0-11;;
+Calendar.year = Calendar.date.getFullYear(); //2015;
+Calendar.dayNames = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+Calendar.monthNames = ["January", "February", "March",
+						"April", "May", "June",
+						"July", "August", "September",
+						"October", "November", "December"];
 
 $(	
     function () {
@@ -11,61 +17,28 @@ $(
 );
 
 function createCalendar(){
-	
-	var month_name = ["January", "February", "March",
-						"April", "May", "June",
-						"July", "August", "September",
-						"October", "November", "December"];
-		
-	var date;
-	var month;
-	var year;
-	if(Calendar.month === null){
-		date = new Date(); // Current Date Object
-		month = date.getMonth(); // returns 0-11
-		year = date.getFullYear(); //2015
-		Calendar.month = month;
-		Calendar.year = year;
-	}
-	else{
-		date = 	new Date(month_name[Calendar.month] + " " + 1 + ", " + Calendar.year).toDateString();
-		month = Calendar.month; // returns 0-11	
-		year = Calendar.year; //2015
-	}
 
-	var day_names = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-
-	var tmp = new Date(month_name[month] + " " + 1 + ", " + year).toDateString();
-
-	var first_day = tmp.substring(0, 3); // Mon - Fri
-
-	var day_num = day_names.indexOf(first_day); //First day of the month(Mon, Tue...etc.)	
-
-	var days = new Date(year, month + 1, 0).getDate(); //30
-
-	var today = new Date().getDate(); // Today's Date 3, 4, 5...30 etc.
-
-	//////////////////////////////////////////////////////////////////////////////////	
 	var table = $("<table></table>");
 
-	add_daysOfWeek(day_names, table);
-	add_calendarDays(day_num, days, today, table);
+	add_daysOfWeek(table);
+	add_calendarDays(table);
 
-	$("#calendar-month-year").text(month_name[month] + " " + year);
+	$("#calendar-month-year").text(Calendar.monthNames[Calendar.month] + " " + Calendar.year);
 	$("#calendar-days").append(table);
+
 }
 
-function add_daysOfWeek(day_names, table){
+function add_daysOfWeek(table){
 	
 	var tr = $("<tr></tr>");
 	
 	// Create Cell For Each Day Of The Week (Sun, Mon, Tues...etc)
-	for(var d = 0; d < day_names.length; d++){	
+	for(var d = 0; d < Calendar.dayNames.length; d++){	
 		var td = $("<td></td>");
 		td.attr("id", "week-days");
 		
 		var p = $("<p></p>");
-		p.text( day_names[d] );
+		p.text( Calendar.dayNames[d] );
 		
 		td.append(p);
 		tr.append(td);		
@@ -74,14 +47,15 @@ function add_daysOfWeek(day_names, table){
 	table.append(tr);
 }
 
-function add_calendarDays(day_num, days, today, table){
-	
+function add_calendarDays(table){
+
 	var tr = $("<tr></tr>");
 	
 	// Create Empty Spaces before First Day Of The Month
-	var d;
-	for(d = 0; d <= 6; d++){
-		if(d == day_num){
+    var firstDayName = Calendar.date.toDateString().substring(0, 3); // First day of the month(Mon, Tue...etc.)
+	var firstDayNum = Calendar.dayNames.indexOf(firstDayName);
+	for(var d = 0; d <= 6; d++){
+		if(d == firstDayNum){
 			break;
 		}
 		var td = $("<td></td>");
@@ -91,33 +65,37 @@ function add_calendarDays(day_num, days, today, table){
 	
 	// Start Counting Days
 	var count = 1;
-	
+
 	// Create The Remaining Days In First Week	
 	for(; d <= 6; d++){
-		tr.append( createCell(count++, today) ); //Adds one to count after 
+		tr.append( createCell(count++) ); //Adds one to count after 
 	}											//function returns
 	
 	// Add First Week To Calendar
-	table.append(tr);
-	
+	table.append(tr);	
+
 	//Create and Add No More Than Six Weeks To Calendar
-	for(var r = 0; r < 5; r++){
+    var days = new Date(Calendar.year, Calendar.month + 1, 0).getDate(); // 30
+    for(var r = 0; r < 5; r++){
 		var tr = $("<tr></tr>");
 		for(d = 0; d <= 6; d++){
 			if(count > days){
 				break;
 			}
-			tr.append( createCell(count++, today) );
+			tr.append( createCell(count++) );
 		}
-		table.append(tr);			
+		table.append(tr); 			
 	}
 }
 
-function createCell(count, today){
+function createCell(count){
+
+    var today = new Date().getDate(); // Today's Date 3, 4, 5...30 etc.
+
 	var td = $("<td></td>");
 	if(count != today)
 		td.attr("id", "days");
-	else if(Calendar.month === new Date().getMonth())
+	else if(Calendar.month === new Date().getMonth() && Calendar.year === new Date().getFullYear())
 		td.attr("id", "today");
     else
 		td.attr("id", "days");
@@ -135,6 +113,7 @@ function prevMonth_Click(){
 		Calendar.year--;
 	}
 	$("#calendar-days").empty();
+    Calendar.date = new Date(Calendar.monthNames[Calendar.month] + " " + 1 + ", " + Calendar.year);
 	createCalendar();
 }
 
@@ -146,5 +125,6 @@ function nextMonth_Click(){
 		Calendar.year++;
 	}
 	$("#calendar-days").empty();
+    Calendar.date = new Date(Calendar.monthNames[Calendar.month] + " " + 1 + ", " + Calendar.year);
 	createCalendar();
 }
