@@ -1,3 +1,12 @@
+// jQuery runs this block automatically when document is ready...
+$(	
+    function () {
+
+		createCalendar();
+
+    }
+);
+
 var Calendar = { };
 Calendar.date = new Date();
 Calendar.month = Calendar.date.getMonth(); // returns 0-11;;
@@ -8,28 +17,17 @@ Calendar.monthNames = ["January", "February", "March",
 						"July", "August", "September",
 						"October", "November", "December"];
 
-$(	
-    function () {
+function createCalendar() {
+    var table = $("<table></table>");
 
-		createCalendar();
+    add_daysOfWeek(table);
+    add_calendarDays(table);
 
-    }
-);
-
-function createCalendar(){
-
-	var table = $("<table></table>");
-
-	add_daysOfWeek(table);
-	add_calendarDays(table);
-
-	$("#calendar-month-year").text(Calendar.monthNames[Calendar.month] + " " + Calendar.year);
-	$("#calendar-days").append(table);
-
+    $("#calendar-month-year").text(Calendar.monthNames[Calendar.month] + " " + Calendar.year);
+    $("#calendar-days").append(table);
 }
 
 function add_daysOfWeek(table){
-	
 	var tr = $("<tr></tr>");
 	
 	// Create Cell For Each Day Of The Week (Sun, Mon, Tues...etc)
@@ -48,7 +46,6 @@ function add_daysOfWeek(table){
 }
 
 function add_calendarDays(table){
-
 	var tr = $("<tr></tr>");
 	
 	// Create Empty Spaces before First Day Of The Month
@@ -56,7 +53,7 @@ function add_calendarDays(table){
 	var firstDayNum = Calendar.dayNames.indexOf(firstDayName);
 	for(var d = 0; d <= 6; d++){
 		if(d == firstDayNum){
-			break;
+			break; // If first day of month break...
 		}
 		var td = $("<td></td>");
 		td.text("");		
@@ -89,7 +86,6 @@ function add_calendarDays(table){
 }
 
 function createCell(count){
-
     var today = new Date().getDate(); // Today's Date 3, 4, 5...30 etc.
 
 	var td = $("<td></td>");
@@ -105,6 +101,7 @@ function createCell(count){
 	return td;
 }
 
+// Called when user clicks left arrow on calendar...
 function prevMonth_Click(){	
 	if(Calendar.month !== 0)
 		Calendar.month--;
@@ -117,6 +114,7 @@ function prevMonth_Click(){
 	createCalendar();
 }
 
+// Called when user clicks right arrow on calendar...
 function nextMonth_Click(){
 	if(Calendar.month !== 11)
 		Calendar.month++;
@@ -124,7 +122,7 @@ function nextMonth_Click(){
 		Calendar.month = 0;
 		Calendar.year++;
 	}
-	$("#calendar-days").empty();
+	$("#calendar-days").empty(); // Clear all nodes in calendar
     Calendar.date = new Date(Calendar.monthNames[Calendar.month] + " " + 1 + ", " + Calendar.year);
 	createCalendar();
 }
